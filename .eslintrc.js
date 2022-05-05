@@ -27,6 +27,7 @@ module.exports = {
     project: ['./tsconfig.json'],
   },
   rules: {
+    '@typescript-eslint/no-unused-vars': 'warn',
     'linebreak-style': 'off',
     'react/function-component-definition': 'off',
     'prettier/prettier': [
