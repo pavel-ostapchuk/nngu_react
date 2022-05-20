@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import Footer from '../../Footer';
-import Header from '../../Header';
+import Footer from '../../shared/Footer';
+import Header from '../../shared/Header';
 import style from './MainLayout.module.scss';
 
 interface IMainLayout {
   children: React.ReactNode;
 }
 
-const MainLayout: FC<IMainLayout> = ({ children }) => {
+const PageLayout: FC<IMainLayout> = ({ children }) => {
   return (
     <div className={style.page_wrapper}>
       <Header />
@@ -17,4 +17,4 @@ const MainLayout: FC<IMainLayout> = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default PageLayout;
