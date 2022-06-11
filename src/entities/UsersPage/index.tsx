@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { usersUrl } from '../../api/constats';
 import { IUsers } from '../../interfaces/IUsers';
+import { setUsersDataAction } from '../../store/pages/UsersPage/actions';
+import { getUsersData } from '../../store/pages/UsersPage/selectors';
 import UsersPageComponent from './components/UsersPageComponent';
 
 const UsersPage = () => {
-  const [usersData, setUsersData] = useState<IUsers[] | null>(null);
+  // const [usersData, setUsersData] = useState<IUsers[] | null>(null);
+  const dispatch = useDispatch();
+  const usersData = useSelector(getUsersData);
 
   const { pathname, search } = useLocation();
   const navigate = useNavigate();
@@ -14,7 +18,8 @@ const UsersPage = () => {
   const getData = async (url: string) => {
     const response = await fetch(url);
     const data = await response.json();
-    setUsersData(data);
+    // setUsersData(data);
+    dispatch(setUsersDataAction(data));
   };
 
   useEffect(() => {
@@ -26,16 +31,10 @@ const UsersPage = () => {
     }
   }, [pathname, navigate, search]);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     getData(usersUrl);
-    dispatch({ type: 'SET_123DATA', payload: [1, 2, 3] });
+    // dispatch({ type: 'SET_DATA', payload: [1, 2, 3] });
   }, []);
-
-  const appState = useSelector((state: any) => state);
-
-  console.log(appState);
 
   return !usersData ? <div>Загрузка...</div> : <UsersPageComponent usersDataAttr={usersData} />;
 };
