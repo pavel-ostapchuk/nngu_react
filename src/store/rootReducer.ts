@@ -5,7 +5,6 @@ import { UsersReducer } from './pages/UsersPage/reducer';
 
 const reducers = {
   users: UsersReducer,
-  todos: TodosReducer,
 };
 
 const rootReducer = combineReducers(reducers);
